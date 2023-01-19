@@ -38,7 +38,11 @@ interface UpdateViewOptions {
     selection?: boolean
 }
 
-declare const Canvas: {
+interface CanvasInterface {
+    side_grids: {
+        x: THREE.Object3D,
+        z: THREE.Object3D
+    };
     materials: {
         [uuid: UUID]: THREE.Material
     };
@@ -195,7 +199,9 @@ declare const Canvas: {
      * Calculate the size of the model, in the currently displayed shape. Returns [width, height] in blockbench units
      */
     getModelSize(): [number, number];
-};
+}
+
+declare const Canvas: CanvasInterface;
 
 /**
  * Marks a specific aspect of the interface to be updated in the next tick. Useful to avoid an update function getting called multiple times in the same task.

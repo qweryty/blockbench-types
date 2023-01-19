@@ -13,14 +13,31 @@ interface PreviewOptions {
     antialias?: boolean
 }
 
-type RaycastResult = {
-    type: 'keyframe' | 'vertex' | 'cube'
+interface RaycastResult {
+    type: 'keyframe' | 'vertex' | 'cube' | 'element' | 'line';
     event: Event
     cube?: Cube
-    intersects?: object[]
+    intersects?: THREE.Intersection[]
+    intersect?: THREE.Intersection
     face?: string
-    vertex: any
-    keyframe: Keyframe
+    vertex?: string | Vertex  // can return vertex uid or vertex FIXME
+    vertices?: Vertex[]  // FIXME
+    vertex_index?: number
+    keyframe?: Keyframe
+    element?: OutlinerNode
+}
+
+interface PreviewSelection {
+        box: JQuery,
+        frustum: THREE.Frustum,
+        activated?: boolean,
+        click_target?: RaycastResult,
+        start_x?: number,
+        start_y?: number,
+        client_x?: number,
+        client_y?: number,
+        old_selected?: OutlinerElement[],
+        old_mesh_selection?: Record<string, MeshSelection>,  // FIXME
 }
 
 declare class Preview extends Deletable {
@@ -42,7 +59,8 @@ declare class Preview extends Deletable {
     readonly camera: THREE.PerspectiveCamera | THREE.OrthographicCamera
     camPers: THREE.PerspectiveCamera
     camOrtho: THREE.OrthographicCamera
-    controls: object
+    controls: THREE.OrbitControls  // FIXME defined in blockbench/js/preview/OrbitControls.js
+    selection: PreviewSelection
     annotations: object
     renderer: THREE.WebGLRenderer
     background: {
@@ -83,4 +101,8 @@ declare class Preview extends Deletable {
      * The last used preview
      */
     static selected: Preview
+
+    click(event: MouseEvent): boolean;
+    mousemove(event: MouseEvent): void;
+    mouseup(event: MouseEvent): Preview;
 }

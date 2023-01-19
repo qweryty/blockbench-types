@@ -20,6 +20,13 @@ interface KeybindItemOptions {
 }
 declare class KeybindItem extends Deletable {
     constructor(id: string, options: KeybindItemOptions);
+
+    id: string
+    type: string
+    name: string
+    category: string
+    default_keybind?: Keybind
+    keybind: Keybind
 }
 
 declare class MenuSeparator {
@@ -268,7 +275,7 @@ declare namespace ActionControl {
 declare namespace Keybinds {
     const actions: BarItem[];
     const stored: {};
-    const extra: {};
+    const extra: Record<string, KeybindItem>;
     const structure: {};
     function save (): void;
     function reset (): void;

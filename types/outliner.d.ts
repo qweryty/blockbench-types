@@ -7,6 +7,8 @@ type ArrayVector2 = [number, number]
  * @private
  */
 declare class OutlinerNode {
+	static uuids: Record<UUID, OutlinerNode>
+
 	constructor ()
 	uuid: UUID
 	export: boolean
