@@ -79,3 +79,53 @@ declare namespace Interface {
 		const ResizeLine;
 	}
 }
+
+// Optional strings?
+interface Colors {
+    ui: string
+    back: string
+    dark: string
+    border: string
+    selected: string
+    button: string
+    bright_ui: string
+    accent: string
+    frame: string
+    text: string
+    light: string
+    accent_text: string
+    bright_ui_text: string
+    subtle_text: string
+    grid: string
+    wireframe: string
+    checkerboard: string
+}
+
+interface ThemeData{
+    id: string
+    name: string
+    author: string
+    customized: boolean
+    borders: boolean
+    main_font: string
+    headline_font: string
+    code_font: string
+    css: string
+    colors: Colors
+}
+
+interface Theme {
+    data: ThemeData
+    themes: [] // FIXME
+    defaultColors: Colors
+    sideload_themes: [] // FIXME
+    setup()
+    setupDialog()
+    customizeTheme()
+    updateColors()
+    updateSettings()
+    // loadTheme(theme) // FIXME
+    // import(file) // FIXME
+}
+
+declare const CustomTheme: Theme;

@@ -64,7 +64,7 @@ declare class Action extends BarItem {
     /**
      * Trigger to run or select the action. This is the equivalent of clicking or using a keybind to trigger it. Also checks if the condition is met.
      */
-    trigger(event: Event): boolean;
+    trigger(event?: Event): boolean;
     updateKeybindingLabel(): this;
     /** Change the icon of the action */
     setIcon(icon: IconString): void;
@@ -74,6 +74,7 @@ declare class Action extends BarItem {
      * Provide a menu that belongs to the action, and gets displayed as a small arrow next to it in toolbars.
      */
     side_menu?: Menu
+    icon?: string
 }
 
 type RGBAColor = {r: number, g: number, b: number, a: number}

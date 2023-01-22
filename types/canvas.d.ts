@@ -59,7 +59,7 @@ interface CanvasInterface {
     /**
      * List of the gizmos (control and UI elements) in the 3D scene
      */
-    gizmos: []
+    gizmos: THREE.Object3D[]  // FIXME some subclass of Object3D?
     /**
      * The material used for all selection outlines
      */

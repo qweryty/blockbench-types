@@ -41,7 +41,7 @@ interface PreviewSelection {
 }
 
 declare class Preview extends Deletable {
-    constructor(options: PreviewOptions)
+    constructor(options?: PreviewOptions)
 
     id: string
     canvas: HTMLCanvasElement
@@ -56,7 +56,7 @@ declare class Preview extends Deletable {
      * Angle, when in a specific side view
      */
     angle: null | number
-    readonly camera: THREE.PerspectiveCamera | THREE.OrthographicCamera
+    get camera(): THREE.PerspectiveCamera | THREE.OrthographicCamera
     camPers: THREE.PerspectiveCamera
     camOrtho: THREE.OrthographicCamera
     controls: THREE.OrbitControls  // FIXME defined in blockbench/js/preview/OrbitControls.js
@@ -88,7 +88,7 @@ declare class Preview extends Deletable {
     getFacingDirection(): 'north' | 'south' | 'east' | 'west'
     getFacingHeight(): 'up' | 'middle' | 'down'
 
-    occupyTransformer(): this
+    occupyTransformer(event?: Event): this
     showContextMenu(event: Event | HTMLElement): this
 
 
